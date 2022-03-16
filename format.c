@@ -142,6 +142,10 @@ void format_account_item(struct buffer *buf, char fmt,
 		/* URL */
 		append_str(buf, account->url, add_slash);
 		break;
+	case 'T':
+		/* totp */
+		append_str(buf, account->totp, add_slash);
+		break;
 	default:
 		break;
 	}
