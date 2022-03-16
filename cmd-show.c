@@ -258,6 +258,7 @@ int cmd_show(int argc, char **argv)
 		{"id", no_argument, NULL, 'I'},
 		{"name", no_argument, NULL, 'N'},
 		{"notes", no_argument, NULL, 'O'},
+		{"totp", no_argument, NULL, 'T'},
 		{"attach", required_argument, NULL, 'a'},
 		{"clip", no_argument, NULL, 'c'},
 		{"color", required_argument, NULL, 'C'},
@@ -273,7 +274,7 @@ int cmd_show(int argc, char **argv)
 
 	int option;
 	int option_index;
-	enum { ALL, USERNAME, PASSWORD, URL, FIELD, ID, NAME, NOTES, ATTACH } choice = ALL;
+	enum { ALL, USERNAME, PASSWORD, URL, FIELD, ID, NAME, NOTES, TOTP, ATTACH } choice = ALL;
 	_cleanup_free_ char *field = NULL;
 	struct account *notes_expansion = NULL;
 	struct field *found_field;
@@ -336,6 +337,9 @@ int cmd_show(int argc, char **argv)
 				break;
 			case 'O':
 				choice = NOTES;
+				break;
+			case 'T':
+				choice = TOTP;
 				break;
 			case 'c':
 				clip = true;
@@ -475,6 +479,8 @@ int cmd_show(int argc, char **argv)
 			value = xstrdup(found->name);
 		else if (choice == NOTES)
 			value = xstrdup(found->note);
+		else if (choice == TOTP)
+			value = xstrdup(found->totp);
 		else if (choice == ATTACH) {
 			struct attach *attach = find_attachment(found, attach_id);
 			if (!attach)
@@ -509,6 +515,8 @@ int cmd_show(int argc, char **argv)
 				print_field(field_format, found, "Reprompt", "Yes");
 			if (strlen(found->note))
 				print_field(field_format, found, "Notes", found->note);
+			if (strlen(found->totp))
+				print_field(field_format, found, "Totp", found->totp);
 		} else if (choice != ATTACH) {
 			if (!value)
 				die("Programming error.");

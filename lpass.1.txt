@@ -24,7 +24,7 @@ several subcommands:
  lpass *login* [--trust] [--plaintext-key [--force, -f]] [--color=auto|never|always] USERNAME
  lpass *logout* [--force, -f] [--color=auto|never|always]
  lpass *passwd*
- lpass *show* [--sync=auto|now|no] [--clip, -c] [--quiet, -q] [--expand-multi, -x] [--json, -j] [--all|--username|--password|--url|--notes|--field=FIELD|--id|--name|--attach=ATTACHID] [--basic-regexp, -G|--fixed-strings, -F] [--color=auto|never|always] {NAME|UNIQUEID}*
+ lpass *show* [--sync=auto|now|no] [--clip, -c] [--quiet, -q] [--expand-multi, -x] [--json, -j] [--all|--username|--password|--url|--notes|--totp|--field=FIELD|--id|--name|--attach=ATTACHID] [--basic-regexp, -G|--fixed-strings, -F] [--color=auto|never|always] {NAME|UNIQUEID}*
  lpass *ls* [--sync=auto|now|no] [--long, -l] [-m] [-u] [--color=auto|never|always] [GROUP]
  lpass *mv* [--sync=auto|now|no] [--color=auto|never|always] {UNIQUENAME|UNIQUEID} GROUP
  lpass *add* [--sync=auto|now|no] [--non-interactive] {--name|--username, -u|--password, -p|--url|--notes|--field=FIELD|--note-type=NOTETYPE} [--color=auto|never|always] {NAME|UNIQUEID}
