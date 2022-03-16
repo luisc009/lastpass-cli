@@ -395,6 +395,11 @@ static struct account *account_parse(struct chunk *chunk, const unsigned char ke
 	skip(last_pwchange_gmt);
 	skip(created_gmt);
 	skip(vulnerable);
+	skip(auto_change_password_supported);
+	skip(breached);
+	skip(custom_template);
+	entry_crypt(totp);
+	skip(form_fields);
 
 	if (parsed->name[0] == 16)
 		parsed->name[0] = '\0';
