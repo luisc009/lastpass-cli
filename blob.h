@@ -71,6 +71,7 @@ struct account {
 	bool attachpresent;
 	size_t attach_len;
 	char *attach_bytes;
+	char *totp, *totp_encrypted;
 
 	struct list_head field_head;
 	struct share *share;

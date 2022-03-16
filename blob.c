@@ -109,6 +109,8 @@ void account_free_contents(struct account *account)
 	free(account->note_encrypted);
 	free(account->attachkey);
 	free(account->attachkey_encrypted);
+	free(account->totp);
+	free(account->totp_encrypted);
 
 	list_for_each_entry_safe(field, tmp, &account->field_head, list) {
 		field_free(field);
