@@ -189,6 +189,7 @@ void account_to_json_field(struct account *account, struct json_field *obj)
 	json_add_string_field(obj, "group", account->group);
 	json_add_string_field(obj, "url", account->url);
 	json_add_string_field(obj, "note", account->note);
+	json_add_string_field(obj, "totp", account->totp);
 }
 
 static void json_free_account_fields(struct json_field *obj)
