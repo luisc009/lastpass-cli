@@ -1,0 +1,23 @@
+FROM alpine:3.14.4 as base
+RUN addgroup -S lpass && adduser -S lpass -G lpass
+RUN mkdir -p /tmp/build
+RUN apk update && apk add --no-cache \
+	curl \
+	libxml2 \ 
+	openssl
+
+FROM base as build
+WORKDIR /tmp/build
+COPY . /tmp/build/
+RUN apk update && apk add --no-cache \
+	alpine-sdk \
+	libxml2-dev \
+	openssl-dev \
+	curl-dev \
+	cmake \
+	&& make
+	
+FROM base as release
+WORKDIR /home/lpass
+COPY --from=build /tmp/build/build/lpass /usr/bin/lpass
+USER lpass
